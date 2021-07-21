@@ -3,10 +3,10 @@
 {%block title_block %} Login {% endblock %}
 {% block body_block %}
 <h2>Login: </h2>
-<form>
+<form method="POST">
 {{form|crispy}}
 {% csrf_token %}
-<button type="button" name="btn btn-primary btn-sm">
+<button type="submit" class="btn btn-primary btn-sm">
 Login
 </button>
 </form>

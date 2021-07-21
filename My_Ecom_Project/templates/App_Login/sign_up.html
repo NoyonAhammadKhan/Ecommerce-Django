@@ -5,8 +5,8 @@
 {% block body_block %}
 <h2>Create New Account:</h2>
 
-<form>
-{{form|crisp}}
+<form method="POST">
+{{form|crispy}}
 {% csrf_token %}
 <button type="submit" class="btn btn-success btn-sm">Create New Account</button>
 </form>
