@@ -17,7 +17,7 @@ def sign_up(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse())
+            return HttpResponseRedirect(reverse('App_Login:login'))
     return render(request, 'App_Login/sign_up.html', context={'form': form})
 
 def login_user(request):
@@ -32,3 +32,9 @@ def login_user(request):
                 login(request, user)
                 return HttpResponse('logged in')
     return render(request, 'App_Login/login.html', context={'form': form})
+
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return HttpResponse("Logged Out")
