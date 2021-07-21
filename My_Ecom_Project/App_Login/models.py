@@ -72,7 +72,7 @@ class Profile(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user + "'s Profile"
+        return self.username + "'s Profile"
 
     def is_fully_filled(self):
         fields_names = [f.name for f in self._meta.get_fields()]
@@ -86,9 +86,11 @@ class Profile(models.Model):
 @receiver(post_save, sender=UserProfile)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=UserProfile)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+    
